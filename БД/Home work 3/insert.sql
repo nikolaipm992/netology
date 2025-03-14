@@ -24,7 +24,17 @@ INSERT INTO Tracks (name, duration, album_id) VALUES
 ('Трек 3', 400, 2),
 ('Трек 4', 200, 2),
 ('Трек 5', 350, 3),
-('Трек 6', 500, 3);
+('Трек 6', 500, 3),
+('my own', 210, 3), -- Добавленные треки для проверки
+('own my', 210, 3),
+('my', 210, 3),
+('oh my god', 210, 3),
+('myself', 210, 3),
+('by myself', 210, 3),
+('bemy self', 210, 3),
+('myself by', 210, 3),
+('beemy', 210, 3),
+('premyne', 210, 3);
 
 -- Сборники
 INSERT INTO Compilations (name, release_year) VALUES
