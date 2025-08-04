@@ -1,0 +1,6 @@
+aiohttp
+aiosqlite
+sqlalchemy
+aiosqlite
+cryptography
+aiohttp-jinja2
