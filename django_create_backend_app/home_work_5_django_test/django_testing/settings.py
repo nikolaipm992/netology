@@ -85,7 +85,7 @@ DATABASES = {
     }
 }
 
-
+MAX_STUDENTS_PER_COURSE = 20
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -114,7 +114,7 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
+#USE_L10N = True
 
 USE_TZ = True
 
