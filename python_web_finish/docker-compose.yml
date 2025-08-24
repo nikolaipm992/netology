@@ -14,7 +14,7 @@ services:
       - DATABASE_URL=postgresql://diplom_user:password@db:5432/diplom_db
 
   db:
-    image: postgres:13
+    image: postgres:14
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     environment:
