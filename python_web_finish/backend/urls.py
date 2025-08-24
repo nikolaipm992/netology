@@ -1,24 +1,25 @@
 from django.urls import path
-from .views import *
+from django_rest_passwordreset.views import reset_password_request_token, reset_password_confirm
+
+from backend.views import PartnerUpdate, RegisterAccount, LoginAccount, CategoryView, ShopView, ProductInfoView, \
+    BasketView, AccountDetails, ContactView, OrderView, PartnerState, PartnerOrders, ConfirmAccount
 
 app_name = 'backend'
 
 urlpatterns = [
-    path('user/register', RegisterAccountView.as_view(), name='user-register'),
-    path('user/login', LoginAccountView.as_view(), name='user-login'),
-
+    path('partner/update', PartnerUpdate.as_view(), name='partner-update'),
+    path('partner/state', PartnerState.as_view(), name='partner-state'),
+    path('partner/orders', PartnerOrders.as_view(), name='partner-orders'),
+    path('user/register', RegisterAccount.as_view(), name='user-register'),
+    path('user/register/confirm', ConfirmAccount.as_view(), name='user-register-confirm'),
+    path('user/details', AccountDetails.as_view(), name='user-details'),
+    path('user/contact', ContactView.as_view(), name='user-contact'),
+    path('user/login', LoginAccount.as_view(), name='user-login'),
+    path('user/password_reset', reset_password_request_token, name='password-reset'),
+    path('user/password_reset/confirm', reset_password_confirm, name='password-reset-confirm'),
     path('categories', CategoryView.as_view(), name='categories'),
     path('shops', ShopView.as_view(), name='shops'),
-    path('products', ProductInfoView.as_view(), name='products'),
-    path('import/products', ImportProductsView.as_view(), name='import-products'),
-
+    path('products', ProductInfoView.as_view(), name='shops'),
     path('basket', BasketView.as_view(), name='basket'),
-
-    path('user/contacts', ContactView.as_view(), name='user-contacts'),
-
-    path('orders', OrderView.as_view(), name='orders-list-create'), 
-    path('orders/<int:pk>', OrderDetailView.as_view(), name='order-detail'),
-
-    path('supplier/orders', SupplierOrdersView.as_view(), name='supplier-orders'),
-    path('supplier/orders/<int:order_id>/status', UpdateOrderStatusView.as_view(), name='update-order-status'),
+    path('order', OrderView.as_view(), name='order'),
 ]

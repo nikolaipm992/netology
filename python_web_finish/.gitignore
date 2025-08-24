@@ -2,7 +2,6 @@
 __pycache__/
 *.py[cod]
 *$py.class
-.idea/
 
 # C extensions
 *.so
@@ -53,14 +52,13 @@ coverage.xml
 *.pot
 
 # Django stuff:
-
-
-
-
-*/migrations/*
-.log
+*.log
+local_settings.py
 db.sqlite3
 
+# Flask stuff:
+instance/
+.webassets-cache
 
 # Scrapy stuff:
 .scrapy
@@ -73,6 +71,10 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
 
 # pyenv
 .python-version
@@ -104,3 +106,41 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.sw[op]
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+.Spotlight-V100
+.Trashes
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk

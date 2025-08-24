@@ -5,6 +5,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django_rest_passwordreset.tokens import get_token_generator
 
+
 STATE_CHOICES = (
     ('basket', 'Статус корзины'),
     ('new', 'Новый'),
@@ -18,13 +19,11 @@ STATE_CHOICES = (
 USER_TYPE_CHOICES = (
     ('shop', 'Магазин'),
     ('buyer', 'Покупатель'),
-
 )
 
+
 class UserManager(BaseUserManager):
-    """
-    Миксин для управления пользователями
-    """
+    """Миксин для управления пользователями"""
     use_in_migrations = True
 
     def _create_user(self, email, password, **extra_fields):
@@ -58,11 +57,10 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
-    """
-    Стандартная модель пользователей
-    """
+    """Стандартная модель пользователей"""
     REQUIRED_FIELDS = []
     objects = UserManager()
+
     USERNAME_FIELD = 'email'
     email = models.EmailField(_('email address'), unique=True)
     company = models.CharField(verbose_name='Компания', max_length=40, blank=True)
@@ -100,9 +98,7 @@ class Shop(models.Model):
     objects = models.manager.Manager()
     name = models.CharField(max_length=50, verbose_name='Название')
     url = models.URLField(verbose_name='Ссылка', null=True, blank=True)
-    user = models.OneToOneField(User, verbose_name='Пользователь',
-                                blank=True, null=True,
-                                on_delete=models.CASCADE)
+    user = models.OneToOneField(User, verbose_name='Пользователь', blank=True, null=True, on_delete=models.CASCADE)
     state = models.BooleanField(verbose_name='статус получения заказов', default=True)
 
     class Meta:
@@ -146,7 +142,7 @@ class Product(models.Model):
 class ProductInfo(models.Model):
     objects = models.manager.Manager()
     model = models.CharField(max_length=80, verbose_name='Модель', blank=True)
-    external_id = models.PositiveIntegerField(verbose_name='Внешний ИД')
+    external_id = models.PositiveIntegerField(verbose_name='Внешний ID')
     product = models.ForeignKey(Product, verbose_name='Продукт', related_name='product_infos', blank=True,
                                 on_delete=models.CASCADE)
     shop = models.ForeignKey(Shop, verbose_name='Магазин', related_name='product_infos', blank=True,
@@ -179,8 +175,7 @@ class Parameter(models.Model):
 class ProductParameter(models.Model):
     objects = models.manager.Manager()
     product_info = models.ForeignKey(ProductInfo, verbose_name='Информация о продукте',
-                                     related_name='product_parameters', blank=True,
-                                     on_delete=models.CASCADE)
+                                     related_name='product_parameters', blank=True, on_delete=models.CASCADE)
     parameter = models.ForeignKey(Parameter, verbose_name='Параметр', related_name='product_parameters', blank=True,
                                   on_delete=models.CASCADE)
     value = models.CharField(verbose_name='Значение', max_length=100)
@@ -195,10 +190,8 @@ class ProductParameter(models.Model):
 
 class Contact(models.Model):
     objects = models.manager.Manager()
-    user = models.ForeignKey(User, verbose_name='Пользователь',
-                             related_name='contacts', blank=True,
+    user = models.ForeignKey(User, verbose_name='Пользователь', related_name='contacts', blank=True,
                              on_delete=models.CASCADE)
-
     city = models.CharField(max_length=50, verbose_name='Город')
     street = models.CharField(max_length=100, verbose_name='Улица')
     house = models.CharField(max_length=15, verbose_name='Дом', blank=True)
@@ -217,14 +210,11 @@ class Contact(models.Model):
 
 class Order(models.Model):
     objects = models.manager.Manager()
-    user = models.ForeignKey(User, verbose_name='Пользователь',
-                             related_name='orders', blank=True,
+    user = models.ForeignKey(User, verbose_name='Пользователь', related_name='orders', blank=True,
                              on_delete=models.CASCADE)
     dt = models.DateTimeField(auto_now_add=True)
     state = models.CharField(verbose_name='Статус', choices=STATE_CHOICES, max_length=15)
-    contact = models.ForeignKey(Contact, verbose_name='Контакт',
-                                blank=True, null=True,
-                                on_delete=models.CASCADE)
+    contact = models.ForeignKey(Contact, verbose_name='Контакт', blank=True, null=True, on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = 'Заказ'
@@ -234,14 +224,13 @@ class Order(models.Model):
     def __str__(self):
         return str(self.dt)
 
+
 class OrderItem(models.Model):
     objects = models.manager.Manager()
     order = models.ForeignKey(Order, verbose_name='Заказ', related_name='ordered_items', blank=True,
                               on_delete=models.CASCADE)
-
-    product_info = models.ForeignKey(ProductInfo, verbose_name='Информация о продукте', related_name='ordered_items',
-                                     blank=True,
-                                     on_delete=models.CASCADE)
+    product_info = models.ForeignKey(ProductInfo, verbose_name='Информация о продукте',
+                                     related_name='ordered_items', blank=True, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField(verbose_name='Количество')
 
     class Meta:
@@ -254,6 +243,7 @@ class OrderItem(models.Model):
 
 class ConfirmEmailToken(models.Model):
     objects = models.manager.Manager()
+
     class Meta:
         verbose_name = 'Токен подтверждения Email'
         verbose_name_plural = 'Токены подтверждения Email'
@@ -275,6 +265,7 @@ class ConfirmEmailToken(models.Model):
         verbose_name=_("When was this token generated")
     )
 
+    # Key field, though it is not the primary key of the model
     key = models.CharField(
         _("Key"),
         max_length=64,

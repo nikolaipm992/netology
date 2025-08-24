@@ -1,0 +1,78 @@
+shop: "Shop1"
+categories:
+  - id: 1
+    name: "Процессоры"
+  - id: 2
+    name: "Материнские платы"
+  - id: 3
+    name: "Видеокарты"
+
+goods:
+  - id: 1
+    category: 1
+    name: "Intel Core i7-10700K"
+    model: "i7-10700K"
+    price: 30000
+    price_rrc: 35000
+    quantity: 10
+    parameters:
+      socket: "LGA1200"
+      cores: "8"
+      threads: "16"
+      frequency: "3.8 GHz"
+  - id: 2
+    category: 1
+    name: "AMD Ryzen 7 5800X"
+    model: "Ryzen 7 5800X"
+    price: 28000
+    price_rrc: 32000
+    quantity: 15
+    parameters:
+      socket: "AM4"
+      cores: "8"
+      threads: "16"
+      frequency: "3.8 GHz"
+  - id: 3
+    category: 2
+    name: "ASUS ROG Strix B550-F"
+    model: "ROG Strix B550-F"
+    price: 15000
+    price_rrc: 18000
+    quantity: 8
+    parameters:
+      socket: "AM4"
+      chipset: "B550"
+      form_factor: "ATX"
+  - id: 4
+    category: 2
+    name: "MSI MPG Z490 Gaming Edge"
+    model: "MPG Z490 Gaming Edge"
+    price: 16000
+    price_rrc: 19000
+    quantity: 7
+    parameters:
+      socket: "LGA1200"
+      chipset: "Z490"
+      form_factor: "ATX"
+  - id: 5
+    category: 3
+    name: "NVIDIA GeForce RTX 3080"
+    model: "RTX 3080"
+    price: 80000
+    price_rrc: 95000
+    quantity: 5
+    parameters:
+      memory: "10GB GDDR6X"
+      bus: "PCIe 4.0"
+      cuda_cores: "8704"
+  - id: 6
+    category: 3
+    name: "AMD Radeon RX 6800 XT"
+    model: "RX 6800 XT"
+    price: 75000
+    price_rrc: 88000
+    quantity: 6
+    parameters:
+      memory: "16GB GDDR6"
+      bus: "PCIe 4.0"
+      stream_processors: "4608"
